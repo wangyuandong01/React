@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ToList from  "./ToList"
 class App extends Component {
     constructor(props){
        super(props);
@@ -8,7 +9,7 @@ class App extends Component {
        };
        this.handleAdd=this.handleAdd.bind(this);
        this.handleChange=this.handleChange.bind(this);
-
+       this.handleRemove=this.handleRemove.bind(this)
 
     }
     handleAdd() {
@@ -25,12 +26,19 @@ class App extends Component {
         });
 
     }
-    delete(index){
+    // delete(index){
+    //     const list2=[...this.state.list];
+    //         list2.splice(index,1);
+    //   this.setState({
+    //    list:list2
+    //   })
+    // }
+    handleRemove(index){
         const list2=[...this.state.list];
-            list2.splice(index,1);
-      this.setState({
-       list:list2
-      })
+        list2.splice(index,1);
+        this.setState({
+            list:list2
+     })
     }
     render() {
       return (
@@ -41,7 +49,9 @@ class App extends Component {
             </div>
             <ul>
                 {this.state.list.map((item,index)=>{
-                    return <li onClick={this.delete.bind(this,index)} key={index}>{item}</li>
+                    // return <li onClick={this.delete.bind(this,index)} key={index}>{item}</li>
+                    //父组件通过属性的方式将参数传递给子组件，自组件通过this.props.content的方式接受父组件的传值
+                    return <ToList Remove={this.handleRemove} key={index} content={item} index={index}/>
                 })}
             </ul>
         </div>
