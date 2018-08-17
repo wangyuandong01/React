@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Button from './Button'
 import ToList from  "./ToList"
 class App extends Component {
     constructor(props){
@@ -7,12 +8,13 @@ class App extends Component {
            list:[],
            inputValue:''
        };
-       this.handleAdd=this.handleAdd.bind(this);
+       // this.handleAdd=this.handleAdd.bind(this);
        this.handleChange=this.handleChange.bind(this);
-       this.handleRemove=this.handleRemove.bind(this)
+       this.handleRemove=this.handleRemove.bind(this);
+       this.readd=this.readd.bind(this);
 
     }
-    handleAdd() {
+    readd() {
         this.setState({
             list:[...this.state.list,this.state.inputValue],
             inputValue:''
@@ -40,13 +42,15 @@ class App extends Component {
             list:list2
      })
     }
+
     render() {
       return (
         <div>
             <div>
                 <input value={this.state.inputValue} onChange={this.handleChange} type="text"/>
-                <button onClick={this.handleAdd}>add</button>
             </div>
+
+            <Button Add={this.readd}  />
             <ul>
                 {this.state.list.map((item,index)=>{
                     // return <li onClick={this.delete.bind(this,index)} key={index}>{item}</li>
