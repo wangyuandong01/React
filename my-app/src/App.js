@@ -2,6 +2,7 @@ import React, { Component} from 'react'
 import Button from './Button'
 import ToList from  "./ToList"
 import "./index.css"
+import Test from "./Test"
 class App extends Component {
     constructor(props){
        super(props);
@@ -44,6 +45,7 @@ class App extends Component {
     }
 
     render() {
+        //render函数用来渲染页面，当组件的state、props发生改变时，render函数就会重新执行
       return (
         <div>
             <div>
@@ -60,6 +62,7 @@ class App extends Component {
             <ul>
                 {this.getTodoItem()}
             </ul>
+            <Test content={this.state.inputValue}/>
         </div>
     )
     
