@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import Button from './Button'
 import ToList from  "./ToList"
+import "./index.css"
 class App extends Component {
     constructor(props){
        super(props);
@@ -8,7 +9,6 @@ class App extends Component {
            list:[],
            inputValue:''
        };
-       // this.handleAdd=this.handleAdd.bind(this);
        this.handleChange=this.handleChange.bind(this);
        this.handleRemove=this.handleRemove.bind(this);
        this.readd=this.readd.bind(this);
@@ -47,19 +47,30 @@ class App extends Component {
       return (
         <div>
             <div>
-                <input value={this.state.inputValue} onChange={this.handleChange} type="text"/>
+                <label className="cont" htmlFor="inputValue" >
+                 请输入要完成的内容
+                </label>
+                <input id="inputValue" className="input"
+                 value={this.state.inputValue} 
+                 onChange={this.handleChange}
+                  type="text"/>
+                {/* <Input Change={this.handleChange} value={this.state.inputValue} /> */}
+                <Button className="cont" Add={this.readd}/>
             </div>
-
-            <Button Add={this.readd}  />
             <ul>
-                {this.state.list.map((item,index)=>{
-                    // return <li onClick={this.delete.bind(this,index)} key={index}>{item}</li>
-                    //父组件通过属性的方式将参数传递给子组件，自组件通过this.props.content的方式接受父组件的传值
-                    return <ToList Remove={this.handleRemove} key={index} content={item} index={index}/>
-                })}
+                {this.getTodoItem()}
             </ul>
         </div>
     )
+    
+  }
+  getTodoItem(){
+      return this.state.list.map((item,index)=>{
+            // return <li onClick={this.delete.bind(this,index)} key={index}>{item}</li>
+            //父组件通过属性的方式将参数传递给子组件，自组件通过this.props.content的方式接受父组件的传值
+            return <ToList className="cont" Remove={this.handleRemove} key={index} content={item} index={index}/>
+        })
+      
   }
 
 }

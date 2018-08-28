@@ -2,7 +2,8 @@ import React,{Component} from 'react'
 class Button extends Component{
     push=this.push.bind(this);
     push(){
-        return this.props.Add();
+        const {Add}=this.props;
+        return Add();
     }
 
     render(){
