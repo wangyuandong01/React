@@ -11,8 +11,13 @@ class ToList extends Component{
         const {Remove,index}=this.props
      return   Remove(index)
     }
-    componentWillReceiveProps(){
-        console.log("ComponentWillReceiveProps")
+    //该时间周期函数的作用在于性能优化
+    shouldComponentUpdate(nextProps){
+    if(nextProps != this.props){
+        return true;
+    }else{
+        return false;
+    }
     }
     render(){
         console.log("child render")

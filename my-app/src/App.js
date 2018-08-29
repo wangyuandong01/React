@@ -3,6 +3,7 @@ import Button from './Button'
 import ToList from  "./ToList"
 import "./index.css"
 import Test from "./Test"
+import axios from "axios"
 class App extends Component {
     constructor(props){
        super(props);
@@ -44,22 +45,15 @@ class App extends Component {
             list:list2
      })
     }
-    componentWillMount(){
-     console.log("componentWillMount")
-    }
     componentDidMount(){
-        console.log("componentDidMount")
+        axios.get('/api/todolist')
+        .then((res) => {
+           console.log(res.data);
+           this.setState(() =>({list : res.data}))
+            })
+        .catch(() => {alert("false")} )
     }
-    shouldComponentUpdate(){
-        console.log("shouldComponentUpdate")
-        return true;
-    }
-    componentWillUpdate(){
-        console.log("componentWillUpdate")
-    }
-    componentDidUpdate(){
-        console.log("componentDidUpdate")
-    }
+   
     render() {
          console.log("render")
         //render函数用来渲染页面，当组件的state、props发生改变时，render函数就会重新执行
