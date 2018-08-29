@@ -15,6 +15,7 @@ class App extends Component {
        this.readd=this.readd.bind(this);
 
     }
+    
     readd() {
         this.setState({
             list:[...this.state.list,this.state.inputValue],
@@ -43,8 +44,24 @@ class App extends Component {
             list:list2
      })
     }
-
+    componentWillMount(){
+     console.log("componentWillMount")
+    }
+    componentDidMount(){
+        console.log("componentDidMount")
+    }
+    shouldComponentUpdate(){
+        console.log("shouldComponentUpdate")
+        return true;
+    }
+    componentWillUpdate(){
+        console.log("componentWillUpdate")
+    }
+    componentDidUpdate(){
+        console.log("componentDidUpdate")
+    }
     render() {
+         console.log("render")
         //render函数用来渲染页面，当组件的state、props发生改变时，render函数就会重新执行
       return (
         <div>
@@ -59,7 +76,7 @@ class App extends Component {
                 {/* <Input Change={this.handleChange} value={this.state.inputValue} /> */}
                 <Button className="cont" Add={this.readd}/>
             </div>
-            <ul>
+            <ul >
                 {this.getTodoItem()}
             </ul>
             <Test content={this.state.inputValue}/>

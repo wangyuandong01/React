@@ -11,8 +11,11 @@ class ToList extends Component{
         const {Remove,index}=this.props
      return   Remove(index)
     }
-    
+    componentWillReceiveProps(){
+        console.log("ComponentWillReceiveProps")
+    }
     render(){
+        console.log("child render")
         const {content,test}=this.props
       return (
           <li onClick={this.handleCancle}>{test}-{content}</li>
